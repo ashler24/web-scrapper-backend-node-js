@@ -1,0 +1,20 @@
+{
+  "name": "web-scrapper-backend-node-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashler24/web-scrapper-backend-node-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashler24/web-scrapper-backend-node-js/issues"
+  },
+  "homepage": "https://github.com/ashler24/web-scrapper-backend-node-js#readme"
+}
