@@ -14,6 +14,7 @@ const app = Express();
 app.use(cors());
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }))
+const host = '0.0.0.0';
 const port = process.env.PORT || 3200;
 
 //for mongo db connection
@@ -255,4 +256,4 @@ cron.schedule("* * 12 * * *", function () {
 });
 
 
-app.listen(port, () => console.log(`node server is running on port :${port}`));
+app.listen(port, host,() => console.log(`node server is running on port :${port}`));
