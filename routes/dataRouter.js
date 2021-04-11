@@ -45,7 +45,7 @@ dataRouter
         }
         catch (error) {
             console.error(error)
-            response.send("Error G01: Unable to fetch the data....");
+            response.send("Error G02: Unable to fetch the data....");
         }
     })
 
