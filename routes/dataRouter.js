@@ -1,4 +1,4 @@
-import Express, { request, response } from 'express';
+import Express from 'express';
 import { Product } from '../models/product.js';
 
 const dataRouter = Express.Router();

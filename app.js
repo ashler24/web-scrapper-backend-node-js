@@ -27,7 +27,7 @@ const con = mongoose.connection;
 con.on("open", () => console.log("Mongo DB connected"));
 //
 
-app.use('/', dataRouter);
+app.use('/data', dataRouter);
 
 
 
