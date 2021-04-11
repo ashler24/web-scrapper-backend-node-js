@@ -14,9 +14,10 @@ const app = Express();
 app.use(cors());
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }))
-const port = 3200;
+const port = process.env.PORT || 3200;
 
 //for mongo db connection
+
 const url = process.env.MONGODB_URI
     || "mongodb://localhost/ProductDB";
 
@@ -203,55 +204,55 @@ async function getFlipkartProductDate(url) {
 }
 
 
-(async () => {
-    //for every new data
-    try {
-        await Product.deleteMany();
-        console.log('All Data successfully deleted');
-    }
-    catch (error) {
-        console.log(error);
-    }
-})()
+// (async () => {
+//     //for every new data
+//     try {
+//         await Product.deleteMany();
+//         console.log('All Data successfully deleted');
+//     }
+//     catch (error) {
+//         console.log(error);
+//     }
+// })()
 
-amazonUrls.forEach(url => {
-    getAmazonProductsData(url);
-})
+// amazonUrls.forEach(url => {
+//     getAmazonProductsData(url);
+// })
 
-snapdealUrls.forEach(url => {
-    getSnapdealProductsData(url);
-})
+// snapdealUrls.forEach(url => {
+//     getSnapdealProductsData(url);
+// })
 
-flipkartUrls.forEach(url => {
-    getFlipkartProductDate(url);
-})
+// flipkartUrls.forEach(url => {
+//     getFlipkartProductDate(url);
+// })
 
 
 //to fetch new data every 12 hrs
-// cron.schedule("* * 12 * * *", function () {
-//     (async () => {
-//         //for every new data
-//         try {
-//             await Product.deleteMany();
-//             console.log('All Data successfully deleted');
-//         }
-//         catch (error) {
-//             console.log(error);
-//         }
-//     })()
+cron.schedule("* * 12 * * *", function () {
+    (async () => {
+        //for every new data
+        try {
+            await Product.deleteMany();
+            console.log('All Data successfully deleted');
+        }
+        catch (error) {
+            console.log(error);
+        }
+    })()
 
-//     amazonUrls.forEach(url => {
-//         getAmazonProductsData(url);
-//     })
+    amazonUrls.forEach(url => {
+        getAmazonProductsData(url);
+    })
 
-//     snapdealUrls.forEach(url => {
-//         getSnapdealProductsData(url);
-//     })
+    snapdealUrls.forEach(url => {
+        getSnapdealProductsData(url);
+    })
 
-//     flipkartUrls.forEach(url => {
-//         getFlipkartProductDate(url);
-//     })
-// });
+    flipkartUrls.forEach(url => {
+        getFlipkartProductDate(url);
+    })
+});
 
 
 app.listen(port, () => console.log(`node server is running on port :${port}`));
