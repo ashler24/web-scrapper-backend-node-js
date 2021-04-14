@@ -19,8 +19,8 @@ const port = process.env.PORT || 3200;
 
 //for mongo db connection
 
-const url = process.env.MONGODB_URI
-    || "mongodb://localhost/ProductDB";
+const url = process.env.MONGODB_URI || "mongodb://localhost/ProductDB"
+// || "mongodb+srv://ashler18:kOtHmMJ45rB1w2u6@recipecluster0.9b7gv.mongodb.net/test?authSource=admin&replicaSet=atlas-v33fyz-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true";
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const con = mongoose.connection;
@@ -230,17 +230,16 @@ async function getFlipkartProductDate(url) {
 
 
 //to fetch new data every 12 hrs
-cron.schedule("* * 12 * * *", function () {
-    (async () => {
-        //for every new data
-        try {
-            await Product.deleteMany();
-            console.log('All Data successfully deleted');
-        }
-        catch (error) {
-            console.log(error);
-        }
-    })()
+cron.schedule("0 0 */12 * * *", async function () {
+    console.log('cron-called')
+    //for every new data
+    try {
+        await Product.deleteMany();
+        console.log('All Data successfully deleted');
+    }
+    catch (error) {
+        console.log(error);
+    }
 
     amazonUrls.forEach(url => {
         getAmazonProductsData(url);
@@ -256,4 +255,4 @@ cron.schedule("* * 12 * * *", function () {
 });
 
 
-app.listen(port, host,() => console.log(`node server is running on port :${port}`));
+app.listen(port, host, () => console.log(`node server is running on port :${port}`));
