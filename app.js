@@ -230,7 +230,7 @@ async function getFlipkartProductDate(url) {
 
 
 //to fetch new data every 12 hrs
-cron.schedule("0 0 */12 * * *", async function () {
+cron.schedule("0 */12 * * *", async function () {
     console.log('cron-called')
     //for every new data
     try {
